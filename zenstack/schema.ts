@@ -68,7 +68,21 @@ export const schema = {
                 },
                 content: {
                     name: "content",
-                    type: "String"
+                    type: "String",
+                    optional: true
+                },
+                viewCount: {
+                    name: "viewCount",
+                    type: "Int",
+                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(0) }] }],
+                    default: 0
+                },
+                slug: {
+                    name: "slug",
+                    type: "String",
+                    unique: true,
+                    optional: true,
+                    attributes: [{ name: "@unique" }]
                 },
                 published: {
                     name: "published",
@@ -94,7 +108,8 @@ export const schema = {
             },
             idFields: ["id"],
             uniqueFields: {
-                id: { type: "Int" }
+                id: { type: "Int" },
+                slug: { type: "String" }
             }
         }
     },
